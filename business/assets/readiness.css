@@ -1,0 +1,23 @@
+/* Focused readability fixes after existing visual rules. */
+.cta .lead{font-size:16px!important;line-height:1.75!important;color:#b2b8c7!important}
+.serviceDisclosure{margin-top:38px;padding:24px 0;border-top:1px solid #343846;max-width:760px}
+.serviceDisclosure h2{font-size:22px;line-height:1.4;letter-spacing:0}
+.serviceDisclosure p,.privacyText{font-size:16px;line-height:1.85;color:#b2b8c7;overflow-wrap:anywhere}
+.challengeStatus{min-height:1.75em;overflow-wrap:anywhere}
+.challengeStatus[data-state="success"]{color:#b2e3c5}
+.challengeStatus[data-state="failure"],.challengeStatus[data-state="timeout"]{color:#f5c3b6}
+.formRecovery{border-top:1px solid #343846;margin-top:20px;padding-top:18px}
+.formRecovery[hidden],.retryCheck[hidden]{display:none!important}
+.retryCheck{display:flex;align-items:flex-start;gap:12px;font-size:15px;line-height:1.7;color:#c6cbd8}
+.retryCheck input{flex:none;width:20px;height:20px;margin-top:4px}
+.formRecovery button{margin-top:14px;padding:12px 18px;min-height:44px;font:inherit;color:#edf0fa;background:#171b26;border:1px solid #5f6a88;border-radius:8px;cursor:pointer}
+.formRecovery button:disabled{opacity:.5;cursor:default}
+.backupContacts{display:flex;flex-wrap:wrap;gap:10px 20px;margin-top:14px;line-height:1.8}
+.backupContacts a{min-height:44px;display:inline-flex;align-items:center;color:#c8d1ff;overflow-wrap:anywhere}
+.challengeSubmit:disabled{opacity:.65;cursor:default}
+@media(max-width:600px){
+ .heroLead,.lead,.pageCard p,.principleCard p,.industryPageCard p,.exampleCard p,.capLine p,.scenarioItem p,.trustItem p,.industryCopy p{font-size:16px!important;line-height:1.75!important}
+ .footer,.footerlinks a,.heroFoot small,.processMini{font-size:13px!important;line-height:1.6!important}
+ .demoHint,.nextAction p,.industryOutcome p,.challengeConsent{font-size:15px!important;line-height:1.75!important}
+ .serviceDisclosure{margin-top:28px}
+}

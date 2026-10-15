@@ -1,0 +1,11 @@
+body{display:block!important;padding:0!important;min-height:0!important}.shell{width:92%!important;max-width:1500px;margin:0 auto!important;padding:0!important}.header,.mobile-nav{display:none!important}.hero{margin-top:0!important}.hero-foot{pointer-events:auto}.hero-foot span:last-child{display:block!important}.hero-foot a{pointer-events:auto}.hero-content{animation:none!important}.assembly{animation:none!important}
+@media(max-width:767px){.shell{width:calc(100% - 28px)!important}.hero{min-height:560px}.hero-foot{display:flex;flex-wrap:wrap;gap:10px}.hero-foot span:last-child{display:block!important}.business-path{gap:7px;font-size:9px;letter-spacing:0}.hero-content{padding-bottom:100px}}
+@media(min-width:600px){html:not([lang=en]) h1{font-size:6.2cqw;letter-spacing:-.045em}}
+
+html{overflow-y:hidden}body{overflow-y:hidden}
+
+@media(max-width:767px){.compact-desktop .hero{aspect-ratio:1000/850;min-height:0;overflow:visible;touch-action:pan-y}.compact-desktop .glass-scene{display:block}.compact-desktop .hero-content{top:12%;left:6.3%;right:6%;max-width:88%;padding:0}.compact-desktop h1{font-size:clamp(25px,8.2cqw,50px);line-height:1.02}.compact-desktop .description{font-size:11px;max-width:85%;line-height:1.6;margin:18px 0}.compact-desktop .eyebrow{font-size:7px!important;margin-bottom:18px!important}.compact-desktop .business-path{font-size:8px;gap:7px;letter-spacing:0;flex-wrap:wrap}.compact-desktop .hero-foot{font-size:7px;bottom:5%;left:6.3%;right:6%;gap:8px}.compact-desktop[data-renderer="webgl-mesh"] .glass{opacity:0!important}}
+
+/* V12: enough natural space for larger auxiliaries and a separate footer. */
+@media(max-width:767px){.compact-desktop .hero{min-height:400px}.compact-desktop .hero-content{top:32px}.compact-desktop .hero-content .eyebrow{font-size:10px!important;line-height:1.5!important;margin-bottom:18px!important}.compact-desktop .description{font-size:13px;line-height:1.6;max-width:92%;margin:18px 0}.compact-desktop .business-path{font-size:11px;line-height:1.6;gap:8px}.compact-desktop .hero-foot{font-size:11px;line-height:1.5;bottom:18px;flex-direction:column;align-items:flex-start;gap:4px}}
+@media(max-width:767px){.compact-desktop .hero{width:100%;aspect-ratio:auto!important}}

@@ -1,0 +1,186 @@
+[
+  {
+    "time": 0.0,
+    "proxy": [
+      1004,
+      563
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 0.1,
+    "proxy": [
+      998,
+      566
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 1.2,
+    "proxy": [
+      1274,
+      424
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 1.3,
+    "proxy": [
+      1276,
+      455
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 1.42,
+    "proxy": [
+      1276,
+      467
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 1.5,
+    "proxy": [
+      1277,
+      480
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 2.2,
+    "proxy": [
+      976,
+      668
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 2.3,
+    "proxy": [
+      964,
+      657
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 2.4,
+    "proxy": [
+      960,
+      654
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 2.8,
+    "proxy": [
+      675,
+      335
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 2.9,
+    "proxy": [
+      657,
+      306
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.0,
+    "proxy": [
+      651,
+      296
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.1,
+    "proxy": [
+      650,
+      294
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.2,
+    "proxy": [
+      648,
+      291
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.3,
+    "proxy": [
+      641,
+      277
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.4,
+    "proxy": [
+      634,
+      265
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.5,
+    "proxy": [
+      631,
+      260
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.6,
+    "proxy": [
+      632,
+      257
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.7,
+    "proxy": [
+      633,
+      255
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.8,
+    "proxy": [
+      633,
+      254
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 3.9,
+    "proxy": [
+      649,
+      258
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 6.0,
+    "proxy": [
+      583,
+      288
+    ],
+    "candidates": 1
+  },
+  {
+    "time": 6.1,
+    "proxy": [
+      579,
+      283
+    ],
+    "candidates": 1
+  }
+]

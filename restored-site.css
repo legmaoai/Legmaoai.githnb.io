@@ -1,0 +1,12 @@
+body{cursor:auto!important}.cursorDot,.cursorRing{display:none!important}.nav{position:relative!important;top:auto!important;margin:30px auto 12px!important;width:92%;max-width:1500px;border:1px solid #38363d;border-radius:16px;background:linear-gradient(118deg,#161417,#0e1012 55%,#171319)!important;padding:20px 28px!important;backdrop-filter:blur(16px)}.glassHero{width:100%;margin:0 auto 64px}.glassHero iframe{display:block;border:0;width:100%;height:680px;background:#09090b}.langmenu{z-index:100}.navright{gap:14px}#siteMotion{background:#1c1b21;color:#c6c5cd;border:1px solid #48464e;border-radius:6px;padding:8px 10px;font:inherit;white-space:nowrap}#siteMotion:disabled{opacity:.6;cursor:default}#siteMotion:focus-visible{outline:2px solid #d7d9dc;outline-offset:4px}a,button,summary{cursor:pointer!important}
+@media(max-width:900px){.nav{padding:16px!important}.navright{gap:8px}.navcta{font-size:11px}#siteMotion{font-size:11px}}
+@media(max-width:650px){.nav{width:calc(100% - 28px);margin-top:16px!important}.glassHero{margin-bottom:24px}#siteMotion{display:none}.navright{gap:8px}}
+.nav{left:auto!important;transform:none!important}
+.nav{position:sticky!important;top:12px!important}
+
+.glassActions{display:flex;gap:28px;align-items:center;padding-top:8px}.glassActions .textbtn{margin:0}.glassActions .secondaryLink{font-size:13px}@media(max-width:650px){.glassActions{flex-wrap:wrap;gap:16px;padding-top:12px}}
+
+/* System cursor remains visible on every restored control. */
+html body,html body.cursor-ready,html body.cursor-ready *{cursor:auto!important}html body a,html body button,html body summary,html body select,html body [role=tab],html body.cursor-ready a,html body.cursor-ready button,html body.cursor-ready summary,html body.cursor-ready select,html body.cursor-ready [role=tab]{cursor:pointer!important}html body input,html body textarea,html body.cursor-ready input,html body.cursor-ready textarea{cursor:text!important}.cursorDot,.cursorRing{display:none!important}
+html body a *,html body button *,html body summary *,html body.cursor-ready a *,html body.cursor-ready button *,html body.cursor-ready summary *{cursor:pointer!important}
+@media(any-pointer:fine){.cursorDot,.cursorRing{display:block!important;pointer-events:none!important}}
