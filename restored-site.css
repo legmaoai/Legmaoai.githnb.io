@@ -5,6 +5,8 @@ body{cursor:auto!important}.cursorDot,.cursorRing{display:none!important}.nav{po
 .nav{position:sticky!important;top:12px!important}
 
 .glassActions{display:flex;gap:28px;align-items:center;padding-top:8px}.glassActions .textbtn{margin:0}.glassActions .secondaryLink{font-size:13px}@media(max-width:650px){.glassActions{flex-wrap:wrap;gap:16px;padding-top:12px}}
+.glassActions #siteMotion{display:inline-flex;align-items:center;min-height:44px;font-size:13px;margin-left:auto;white-space:normal;text-align:left;max-width:100%}
+@media(max-width:650px){.glassActions #siteMotion{margin-left:0}}
 
 /* System cursor remains visible on every restored control. */
 html body,html body.cursor-ready,html body.cursor-ready *{cursor:auto!important}html body a,html body button,html body summary,html body select,html body [role=tab],html body.cursor-ready a,html body.cursor-ready button,html body.cursor-ready summary,html body.cursor-ready select,html body.cursor-ready [role=tab]{cursor:pointer!important}html body input,html body textarea,html body.cursor-ready input,html body.cursor-ready textarea{cursor:text!important}.cursorDot,.cursorRing{display:none!important}
