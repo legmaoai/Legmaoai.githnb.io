@@ -269,3 +269,10 @@ html:lang(zh) h1,html:lang(zh) h2,html:lang(zh-tw) h1,html:lang(zh-tw) h2,html:l
    including touch-enabled laptops whose primary pointer is reported as coarse. */
 @media (any-pointer:fine){body.cursor-ready,body.cursor-ready a,body.cursor-ready button,body.cursor-ready summary{cursor:none!important}.cursorDot,.cursorRing{display:block!important}}
 @media (not (any-pointer:fine)){html,a,button,summary{cursor:auto!important}.cursorDot,.cursorRing{display:none!important}}
+
+/* LEGMAO is the primary brand; AI is a supporting descriptor. */
+.intelligenceFieldVisual .coreOrb{width:112px;height:112px;gap:4px}
+.intelligenceFieldVisual .coreOrb span{font-size:19px!important;font-weight:700;letter-spacing:.035em;line-height:1.1!important;color:#f3f5ff!important}
+.intelligenceFieldVisual .coreOrb b{font-size:11px!important;font-weight:500;letter-spacing:.2em;color:#adb9d8}
+@media(max-width:650px){.intelligenceFieldVisual .coreOrb{width:94px;height:94px}.intelligenceFieldVisual .coreOrb span{font-size:16px!important}.intelligenceFieldVisual .coreOrb b{font-size:10px!important}}
+html.legmao-motion-enabled .intelligenceFieldVisual .coreOrb{animation:orbBreathe 4.5s ease-in-out infinite!important}

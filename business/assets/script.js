@@ -1,9 +1,16 @@
-// Share the explicit site motion preference with the glass introduction.
+// Resolve motion in the parent before any canvas starts (the glass iframe loads later).
+let legmaoMotionChoice = '';
+try {
+  const requested = new URLSearchParams(location.search).get('motion');
+  if (requested === 'on') localStorage.setItem('legmao-motion-choice', 'on');
+  if (requested === 'system') localStorage.removeItem('legmao-motion-choice');
+  legmaoMotionChoice = requested === 'on' ? 'on' : localStorage.getItem('legmao-motion-choice') || '';
+} catch {
+  legmaoMotionChoice = new URLSearchParams(location.search).get('motion') === 'on' ? 'on' : '';
+}
+document.documentElement.classList.toggle('legmao-motion-enabled', legmaoMotionChoice === 'on');
 function legmaoReduceMotion(systemPreference) {
-  try {
-    if (localStorage.getItem('legmao-motion-choice') === 'on') return false;
-  } catch {}
-  return systemPreference.matches;
+  return legmaoMotionChoice !== 'on' && systemPreference.matches;
 }
 const businessKeys='heroTitle|heroLead|heroSub|watch|capKicker|capTitle|capLead|cap1Title|cap1Copy|cap2Title|cap2Copy|cap3Title|cap3Copy|cap4Title|cap4Copy|cap5Title|cap5Copy|cap6Title|cap6Copy|demoKicker|demoTitle|demoLead|scenarioKicker|scenarioTitle|scenarioLead|scenarioSales|scenarioSalesCopy|scenarioOps|scenarioOpsCopy|scenarioManage|scenarioManageCopy|scenarioDecision|scenarioDecisionCopy|industryTitle|industryLead|trustKicker|trustTitle|trust1Title|trust1Copy|trust2Title|trust2Copy|trust3Title|trust3Copy|trust4Title|trust4Copy|ctaKicker|ctaTitle|ctaLead|ctaButton|contactHint'.split('|');
     const businessCopy={
@@ -139,7 +146,7 @@ const businessKeys='heroTitle|heroLead|heroSub|watch|capKicker|capTitle|capLead|
       const host=canvas.parentElement, ctx=canvas.getContext('2d'), motion=matchMedia('(prefers-reduced-motion: reduce)'); let w=0,h=0,dpr=1,t=0,mx=.5,my=.5,raf=0;
       const points=[]; const colors=['#7888ff','#51dfff','#d18cff','#72edbe'];
       function resize(){const r=host.getBoundingClientRect();dpr=Math.min(devicePixelRatio||1,2);w=r.width;h=r.height;canvas.width=w*dpr;canvas.height=h*dpr;canvas.style.width=w+'px';canvas.style.height=h+'px';ctx.setTransform(dpr,0,0,dpr,0,0);points.length=0;const n=Math.max(42,Math.floor(w/13));for(let i=0;i<n;i++)points.push({a:Math.random()*Math.PI*2,r:.15+Math.random()*.78,s:(.0005+Math.random()*.0014)*(Math.random()>.5?1:-1),z:Math.random(),c:colors[i%4]})}
-      function draw(){t+=.006;ctx.clearRect(0,0,w,h);const cx=w*.5+(mx-.5)*18,cy=h*.5+(my-.5)*18;const grad=ctx.createRadialGradient(cx,cy,8,cx,cy,Math.min(w,h)*.48);grad.addColorStop(0,'rgba(104,119,255,.13)');grad.addColorStop(.42,'rgba(55,78,190,.045)');grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
+      function draw(){canvas.dataset.animationFrames=String(Number(canvas.dataset.animationFrames||0)+1);canvas.dataset.motionStatus=legmaoReduceMotion(motion)?"reduced":"animating";t+=.006;ctx.clearRect(0,0,w,h);const cx=w*.5+(mx-.5)*18,cy=h*.5+(my-.5)*18;const grad=ctx.createRadialGradient(cx,cy,8,cx,cy,Math.min(w,h)*.48);grad.addColorStop(0,'rgba(104,119,255,.13)');grad.addColorStop(.42,'rgba(55,78,190,.045)');grad.addColorStop(1,'rgba(0,0,0,0)');ctx.fillStyle=grad;ctx.fillRect(0,0,w,h);
         const pts=[];points.forEach((p,i)=>{p.a+=p.s;const rr=p.r*(Math.min(w,h)*.48);const x=cx+Math.cos(p.a+t*(.2+p.z*.3))*rr;const y=cy+Math.sin(p.a*1.13+t*(.14+p.z*.2))*rr*.72;pts.push({x,y,p});});
         for(let i=0;i<pts.length;i++){for(let j=i+1;j<pts.length;j++){const a=pts[i],b=pts[j],dx=a.x-b.x,dy=a.y-b.y,dist=Math.hypot(dx,dy);if(dist<Math.min(w,h)*.12){ctx.strokeStyle='rgba(118,133,255,'+(0.07*(1-dist/(Math.min(w,h)*.12)))+')';ctx.lineWidth=.6;ctx.beginPath();ctx.moveTo(a.x,a.y);ctx.lineTo(b.x,b.y);ctx.stroke()}}}
         pts.forEach(o=>{const q=3+o.p.z*3;ctx.fillStyle=o.p.c;ctx.globalAlpha=.2+o.p.z*.55;ctx.beginPath();ctx.arc(o.x,o.y,q*.42,0,Math.PI*2);ctx.fill();ctx.globalAlpha=.08;ctx.beginPath();ctx.arc(o.x,o.y,q*2.8,0,Math.PI*2);ctx.fill()});ctx.globalAlpha=1;if(!legmaoReduceMotion(motion)&&!document.hidden)raf=requestAnimationFrame(draw);else raf=0}
