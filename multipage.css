@@ -1,0 +1,14 @@
+.hubGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+.hubCard{position:relative;display:block;padding:36px 36px 64px;border:1px solid #34343d;border-radius:18px;background:linear-gradient(135deg,#17171e,#0c0d12);transition:transform .2s,border-color .2s}
+.hubCard:hover{transform:translateY(-4px);border-color:#8589a6}
+.hubCard:focus-visible{outline:2px solid #b6c1ff;outline-offset:5px}
+.hubNumber{font-size:12px;letter-spacing:.12em;color:#8e94aa}
+.hubCard h2{font-size:clamp(23px,2.5vw,36px);line-height:1.25;margin:24px 0 16px}
+.hubCard p{font-size:15px;line-height:1.8;color:#a4a7b4;max-width:45ch}
+.hubArrow{position:absolute;right:30px;bottom:24px;font-size:24px;color:#c5cbea}
+.pageTrail{padding-top:36px;color:#969dae;font-size:13px;display:flex;gap:12px}
+.pageTrail a{color:#e4e7ef}.detailPage main>.section:first-of-type{padding-top:60px}
+.detailPage .navlinks a[aria-current=page]{color:#fff;text-decoration:underline;text-underline-offset:7px}
+.navlinks a[aria-current=page]{color:#fff}
+@media(max-width:650px){.hubGrid{grid-template-columns:1fr;gap:14px}.hubCard{padding:26px 24px 56px}.pageHub{padding-top:32px}.pageTrail{padding-top:24px}.detailPage main>.section:first-of-type{padding-top:36px}}
+@media(prefers-reduced-motion:reduce){.hubCard{transition:none}.hubCard:hover{transform:none}}
