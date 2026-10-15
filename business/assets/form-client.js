@@ -21,7 +21,10 @@
       if (active) return { state: 'submitting', duplicate: true };
       if (!valid(values)) { update('failure', { reason: 'invalid' }); return { state }; }
       if (values.honey) { update('failure', { reason: 'invalid' }); return { state }; }
-      const fingerprint = JSON.stringify([values.name, values.email, values.business || '', values.challenge]);
+      const industry = /^[0-8]$/.test(values.industry || '') ? values.industry : '';
+      const service = ['content','replies','operations'].includes(values.service) ? values.service : '';
+      const need = /^[0-5]$/.test(values.need || '') ? values.need : '';
+      const fingerprint = JSON.stringify([values.name, values.email, values.business || '', values.challenge,industry,service,need]);
       if (fingerprint === previous) { update('success', { duplicate: true }); return { state, duplicate: true }; }
       if (uncertain && !acknowledge) { update(state === 'timeout' ? 'timeout' : 'failure', { uncertain: true }); return { state, needsAcknowledgment: true }; }
       active = true;
@@ -30,7 +33,11 @@
       let timer, expired = false;
       const payload = { name: values.name.trim(), email: values.email.trim(), business: values.business?.trim() || '',
         challenge: values.challenge.trim(), consent: 'Yes', _honey: '', _replyto: values.email.trim(),
-        _url: 'https://legmaoai.github.io/challenge.html', _subject: 'LEGMAO business challenge' };
+        _url: 'https://legmaoai.github.io/business/challenge.html', _subject: 'LEGMAO business challenge',
+        industry: ['Real estate','Finance','Manufacturing','Retail','Logistics','Hospitality & travel','Healthcare','Education','Public services'][Number(industry)] || '',
+        service: {content:'Content & campaigns',replies:'Customer enquiries',operations:'Follow-up & operations'}[service] || '',
+        need: need === '' ? '' : ['Lead growth','Data analysis','Business management','AI automation','Digital transformation','Decision support'][Number(need)] };
+      if(industry === '')payload.industry='';
       try {
         const deadline = new Promise((resolve, reject) => {
           timer = schedule(() => { expired = true; controller.abort(); reject(new Error('timeout')); }, options.timeoutMs ?? 15000);

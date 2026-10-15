@@ -84,7 +84,9 @@
     if (!item) return;
     event.preventDefault();
     const code = item.dataset.lang;
-    history.replaceState(null, '', code === 'en' ? location.pathname : `?lang=${encodeURIComponent(code)}`);
+    const languageUrl=new URL(location.href);
+    if(code==='en')languageUrl.searchParams.delete('lang');else languageUrl.searchParams.set('lang',code);
+    history.replaceState(null,'',languageUrl.pathname+languageUrl.search+languageUrl.hash);
     applyLanguage(code);
     picker.open = false;
     label.focus();
@@ -142,7 +144,7 @@
     if(!form.reportValidity())return;
     if(location.protocol==='file:'){formState='failure';formDetail={reason:'local'};renderFormState();return;}
     const values=new FormData(form);
-    await client.submit({name:values.get('name'),email:values.get('email'),business:values.get('business'),challenge:values.get('challenge'),consent:form.querySelector('[name="consent"]').checked,honey:values.get('_honey')},acknowledge.checked);
+    await client.submit({name:values.get('name'),email:values.get('email'),business:values.get('business'),challenge:values.get('challenge'),industry:values.get('industry'),service:values.get('service'),need:new URLSearchParams(location.search).get('need'),consent:form.querySelector('[name="consent"]').checked,honey:values.get('_honey')},acknowledge.checked);
   }
   form.addEventListener('submit',event=>{event.preventDefault();send()});
   retry.addEventListener('click',send);acknowledge.addEventListener('change',()=>{retry.disabled=!!formDetail.uncertain&&!acknowledge.checked});

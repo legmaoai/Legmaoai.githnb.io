@@ -1,0 +1,16 @@
+/* Content and consultation additions inherit the existing visual system. */
+.journeyServices{border-top:1px solid #ffffff18}
+.journeyServices h2{max-width:22ch;font-size:clamp(30px,4vw,54px);line-height:1.2}
+.journeyServices .lead{max-width:65ch;margin:24px 0 42px;color:#abb2c1}
+.journeyService{display:grid;grid-template-columns:34px minmax(150px,.8fr) minmax(220px,1.3fr);gap:18px 28px;padding:30px 0;border-top:1px solid #ffffff20;align-items:start}
+.journeyNo{color:#9cabc3;font-size:12px;padding-top:6px}
+.journeyService h3{font-size:24px;line-height:1.4;margin:0}
+.journeyService p{font-size:15px;line-height:1.85;color:#abb2c1;margin:0;max-width:60ch}
+.journeyService a{grid-column:3;font-size:14px;color:#e4e9f3;justify-self:start;padding:8px 0;text-underline-offset:5px}
+.journeyService a:focus-visible{outline:2px solid #a9b8ff;outline-offset:6px}
+.journeyNext{border-top:1px solid #ffffff24;margin-top:28px;padding-top:22px}
+.journeyNext h3{font-size:17px}.journeyNext p{font-size:14px;line-height:1.8;color:#aeb4c3}
+.journeyFields{margin-bottom:22px}
+.challengeField select{width:100%;min-width:0;min-height:52px;padding:13px 12px;background:#11131a;color:#e4e7ef;border:1px solid #ffffff35;border-radius:8px;font:inherit;font-size:16px;line-height:1.5}
+.challengeField select:focus-visible{outline:2px solid #a9b8ff;outline-offset:3px}
+@media(max-width:700px){.journeyService{grid-template-columns:26px minmax(0,1fr);gap:12px 18px;padding:26px 0}.journeyService p,.journeyService a{grid-column:2}.journeyService h3{font-size:23px}.journeyService p{font-size:14px}.journeyServices .lead{font-size:15px}}
