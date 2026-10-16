@@ -32,7 +32,7 @@ async function setup(){document.body.classList.toggle('compact-desktop',innerWid
 function updateTitle(){
 
  const title=document.querySelector('#hero-title'),content=document.querySelector('.hero-content');
- if(innerWidth<768){const foot=document.querySelector('.hero-foot');hero.style.height=Math.ceil(Math.max(400,hero.clientWidth*.85,32+content.offsetHeight+foot.offsetHeight+48))+'px'}else hero.style.height='';
+ if(innerWidth<768){const foot=document.querySelector('.hero-foot'),containerWidth=document.querySelector('.shell').clientWidth;hero.style.height=Math.ceil(Math.max(400,containerWidth*.85,32+content.offsetHeight+foot.offsetHeight+48))+'px'}else hero.style.height='';
  title.style.fontSize='';const initial=getComputedStyle(title),measure=document.createElement('canvas').getContext('2d');measure.font=initial.fontWeight+' '+initial.fontSize+' '+initial.fontFamily;if('letterSpacing'in measure)measure.letterSpacing=initial.letterSpacing;const widest=Math.max(...title.innerText.split(/\n/).filter(Boolean).map(line=>measure.measureText(line).width));if(widest>title.clientWidth)title.style.fontSize=(parseFloat(initial.fontSize)*title.clientWidth/widest*.98)+'px';
  if(!scene||mobile){document.body.classList.remove('optical-title');titleBacking.width=1;titleBacking.height=1;return}
  const texture=document.createElement('canvas');texture.width=Math.min(4096,Math.max(2000,Math.ceil(hero.clientWidth*Math.min(devicePixelRatio||1,2))));texture.height=Math.round(texture.width*.45);const ctx=texture.getContext('2d');

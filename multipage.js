@@ -11,9 +11,14 @@
     document.querySelectorAll('.navlinks a').forEach(a=>{if(new URL(a.href).pathname===location.pathname)a.setAttribute('aria-current','page');else a.removeAttribute('aria-current')});
   }
   new MutationObserver(sync).observe(document.documentElement,{attributes:true,attributeFilter:['lang']});sync();
-  // Preserve old bookmarked homepage sections with their corresponding detail pages.
+  // Legacy homepage bookmarks remain on the homepage; detail pages require a click.
   if(location.pathname==='/'||location.pathname==='/index.html'){
-    const redirects={'#platform':'/capabilities.html','#intelligence':'/workflows.html','#industries':'/sectors.html'};
-    if(redirects[location.hash])location.replace(redirects[location.hash]+location.search+location.hash);
+    const keepHome=()=>{
+      if(['#platform','#intelligence','#industries'].includes(location.hash)){
+        history.replaceState(null,'',location.pathname+location.search+'#top');
+        scrollTo({top:0,left:0,behavior:'instant'});
+      }
+    };
+    keepHome();addEventListener('hashchange',keepHome);
   }
 })();
