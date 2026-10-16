@@ -11,11 +11,10 @@ const svg=document.querySelector('.glass'),hero=document.querySelector('.hero'),
 const ns='http://www.w3.org/2000/svg';
 const reduced=matchMedia('(prefers-reduced-motion: reduce)');
 const qaMode=new URLSearchParams(location.search).has('qa');let motionPreview=false,motionPaused=false;
-// Explicit per-browser choice; system preference remains the default for other visitors.
-try{const choice=new URLSearchParams(location.search).get('motion');if(choice==='on'||choice==='off')localStorage.setItem('legmao-motion-choice',choice);if(choice==='system')localStorage.removeItem('legmao-motion-choice');const stored=localStorage.getItem('legmao-motion-choice');motionPreview=stored==='on';motionPaused=stored==='off'}catch{}
-
-
-const reduceMotion=()=>motionPaused||(reduced.matches&&!motionPreview);
+// Automatic playback is the requested site behavior. Ignore legacy pause records.
+try{localStorage.setItem('legmao-motion-choice','on')}catch{}
+motionPreview=true;motionPaused=false;
+const reduceMotion=()=>false;
 const compactStatic=()=>false;
 let mobile=compactStatic(),scene=null,generation=0,qaInputLock=false;
 const mobilePanels=[[[2.5,2.5],[720,2.5],[995,145],[995,447.5],[2.5,447.5]],[[730,2.5],[997.5,2.5],[997.5,135]]];
@@ -97,7 +96,6 @@ function applyLanguage(){const t=translations[language];document.documentElement
  const b=document.querySelector('.language-toggle');b.textContent=language==='en'?'中文':'EN';b.setAttribute('aria-label',language==='en'?'Switch to Chinese':'切换至英文');refreshMotionButton();document.fonts.ready.then(()=>{updateTitle();draw()});
 }
 document.querySelector('.language-toggle').addEventListener('click',()=>{language=language==='en'?'zh':'en';try{localStorage.setItem('legmao-language',language)}catch{}applyLanguage()});
-document.querySelector('.motion-toggle').addEventListener('click',()=>{const enable=reduceMotion();motionPaused=!enable;motionPreview=enable;try{localStorage.setItem('legmao-motion-choice',enable?'on':'off')}catch{}refreshMotionButton();if(enable)wake();else{cancelAnimationFrame(raf);raf=0;last=0;target={x:0,y:0,active:0};state={x:0,y:0,vx:0,vy:0,active:0};draw()}embeddedState()});
 applyLanguage();setup();
 
 
@@ -108,7 +106,7 @@ applyLanguage();setup();
 
 
 function embeddedState(){parent.postMessage({type:'legmao-glass-state',enabled:Boolean(scene)&&!mobile&&!reduceMotion(),available:Boolean(scene)&&!mobile,height:document.querySelector('.shell').getBoundingClientRect().height},location.origin)}
-addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data.type==='legmao-visibility'){frameVisible=Boolean(e.data.visible);if(frameVisible)wake();else stopAnimation();return}if(e.data.type==='legmao-language'&&translations[e.data.lang]){language=e.data.lang;applyLanguage();embeddedState()}if(e.data.type==='legmao-motion'){document.querySelector('.motion-toggle').click();embeddedState()}});
+addEventListener('message',e=>{if(e.origin!==location.origin||e.source!==parent)return;if(e.data.type==='legmao-visibility'){frameVisible=Boolean(e.data.visible);if(frameVisible)wake();else stopAnimation();return}if(e.data.type==='legmao-language'&&translations[e.data.lang]){language=e.data.lang;applyLanguage();embeddedState()}});
 addEventListener('storage',e=>{if(e.key==='legmao-language'&&translations[e.newValue]){language=e.newValue;applyLanguage()}});
 new ResizeObserver(embeddedState).observe(document.querySelector('.shell'));setTimeout(embeddedState,500);
 reduced.addEventListener('change',embeddedState);

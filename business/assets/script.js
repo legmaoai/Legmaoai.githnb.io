@@ -1,17 +1,8 @@
-// Resolve motion in the parent before any canvas starts (the glass iframe loads later).
-let legmaoMotionChoice = '';
-try {
-  const requested = new URLSearchParams(location.search).get('motion');
-  if (requested === 'on') localStorage.setItem('legmao-motion-choice', 'on');
-  if (requested === 'system') localStorage.removeItem('legmao-motion-choice');
-  legmaoMotionChoice = requested === 'on' ? 'on' : localStorage.getItem('legmao-motion-choice') || '';
-} catch {
-  legmaoMotionChoice = new URLSearchParams(location.search).get('motion') === 'on' ? 'on' : '';
-}
-document.documentElement.classList.toggle('legmao-motion-enabled', legmaoMotionChoice === 'on');
-function legmaoReduceMotion(systemPreference) {
-  return legmaoMotionChoice !== 'on' && systemPreference.matches;
-}
+// Page motion starts automatically, as requested for the LEGMAO experience.
+try { localStorage.setItem('legmao-motion-choice','on'); } catch {}
+document.documentElement.classList.add('legmao-motion-enabled');
+document.documentElement.classList.remove('legmao-motion-paused');
+function legmaoReduceMotion() { return false; }
 const businessKeys='heroTitle|heroLead|heroSub|watch|capKicker|capTitle|capLead|cap1Title|cap1Copy|cap2Title|cap2Copy|cap3Title|cap3Copy|cap4Title|cap4Copy|cap5Title|cap5Copy|cap6Title|cap6Copy|demoKicker|demoTitle|demoLead|scenarioKicker|scenarioTitle|scenarioLead|scenarioSales|scenarioSalesCopy|scenarioOps|scenarioOpsCopy|scenarioManage|scenarioManageCopy|scenarioDecision|scenarioDecisionCopy|industryTitle|industryLead|trustKicker|trustTitle|trust1Title|trust1Copy|trust2Title|trust2Copy|trust3Title|trust3Copy|trust4Title|trust4Copy|ctaKicker|ctaTitle|ctaLead|ctaButton|contactHint'.split('|');
     const businessCopy={
       en:'We rethink <span>how business works.</span>|We begin with your customers, operating model and the work happening every day.|Business transformation · Operational redesign · Technology as an enabler|CHALLENGE YOUR BUSINESS <span>→</span>|What AI can do|AI does more than answer.<br><span>It takes part in the work.</span>|From analyzing data to managing business, automating tasks and supporting decisions, AI can become part of everyday work.|Data analysis|AI organizes and analyzes business data to uncover trends, issues and opportunities.|Customer management|AI helps manage customer information, follow-ups and sales opportunities.|Business operations|AI helps coordinate projects, tasks, processes and day-to-day operations.|Intelligent automation|Hand repetitive, time-consuming work to AI to complete automatically.|Knowledge & content|Organize materials, create content and make enterprise knowledge easier to use.|Decision support|Bring key information together, compare options and support management decisions.|A real work example|See AI take part<br><span>in the work.</span>|This is more than an AI animation. Follow how AI gathers information, analyzes it, identifies an opportunity and helps move the next action forward.|AI at work|How does AI take part<br><span>in real business work?</span>|Not to replace teams, but to give them more time for the work that matters.|Sales|Find customers → Analyze needs → Recommend follow-up → Create sales tasks|Operations|Analyze the business → Find anomalies → Suggest a response → Automate repeat tasks|Management|Bring data together → Spot issues → Create reports → Alert owners|Decisions|Organize information → Analyze trends → Compare options → Support decisions|Solutions for your industry|Choose an industry and a business need to explore relevant AI solutions.|Built for business|Enterprise AI is<br><span>more than a tool.</span>|Fits existing work|Connect AI to current business processes without asking teams to change everything.|Industry context|Shape solutions around the company, industry and business goals.|Data security|Treat enterprise data, business information and access controls with care.|Room to grow|Start with one focused work scenario and extend into more workflows over time.|Move business forward|Bring AI into your business.|Start with one real piece of work. Let AI take part in more business processes over time and keep the business moving forward.|Explore AI solutions <span>→</span>|Want to discuss your business? <a href="mailto:legmao.ai@gmail.com">legmao.ai@gmail.com</a>',
