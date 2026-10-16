@@ -86,13 +86,13 @@ let language='en';try{language=new URLSearchParams(location.search).get('lang')|
 const translations=businessCopy;if(!translations[language])language="en";
 function setLinkText(element,text){if(!element)return;const icon=element.querySelector('span');element.replaceChildren(document.createTextNode(text+' '));if(icon)element.append(icon)}
 function refreshMotionButton(){const b=document.querySelector('.motion-toggle');if(!b)return;const text=typeof translations==='undefined'?null:translations[language];const enabled=Boolean(scene)&&!mobile&&!reduceMotion();b.textContent=text?(enabled?text.pause:text.enable):(enabled?'Pause motion':'Enable motion');b.setAttribute('aria-pressed',String(enabled));b.hidden=mobile}
-function applyLanguage(){const t=translations[language];document.documentElement.lang=language;document.title=language==='zh'?'挑战你的业务 — LEGMAO AI':'Challenge Your Business — LEGMAO AI';
+function applyLanguage(){const t=translations[language];document.documentElement.lang=language;document.title=t.heading.join(' ')+' — LEGMAO';
  const keys=['solutions','examples','industries','company','challenge'],files=['solutions.html','case-studies.html','industries.html','company.html','challenge.html'];
  document.querySelectorAll('[data-business]').forEach(a=>{const i=keys.indexOf(a.dataset.business);if(a.classList.contains('contact'))setLinkText(a,t.nav[i]);else a.textContent=t.nav[i];a.href='business/'+files[i]+'?lang='+language});
  setLinkText(document.querySelector('.menu'),t.menu);document.querySelector('.hero-content .eyebrow').textContent=t.eyebrow;
  const h=document.querySelector('#hero-title');h.replaceChildren(document.createTextNode(t.heading[0]),document.createElement('br'),document.createTextNode(t.heading[1]));
  document.querySelector('.description').textContent=t.description;document.querySelectorAll('[data-step]').forEach(s=>s.textContent=t.steps[Number(s.dataset.step)]);
- document.querySelectorAll('.hero-foot span').forEach((s,i)=>{if(i===1){const a=document.createElement('a');a.href='mailto:'+t.foot[i];a.textContent=t.foot[i];s.replaceChildren(a)}else s.textContent=t.foot[i]});document.querySelector('.business-path').setAttribute('aria-label',language==='zh'?'接下来的步骤':'The next steps');
+ document.querySelectorAll('.hero-foot span').forEach((s,i)=>{if(i===1){const a=document.createElement('a');a.href='mailto:'+t.foot[i];a.textContent=t.foot[i];s.replaceChildren(a)}else s.textContent=t.foot[i]});document.querySelector('.business-path').setAttribute('aria-label',t.steps.join(' → '));
  const b=document.querySelector('.language-toggle');b.textContent=language==='en'?'中文':'EN';b.setAttribute('aria-label',language==='en'?'Switch to Chinese':'切换至英文');refreshMotionButton();document.fonts.ready.then(()=>{updateTitle();draw()});
 }
 document.querySelector('.language-toggle').addEventListener('click',()=>{language=language==='en'?'zh':'en';try{localStorage.setItem('legmao-language',language)}catch{}applyLanguage()});
